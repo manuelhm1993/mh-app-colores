@@ -1,9 +1,10 @@
 <?php
 // ---------------- Para retroceder una carpeta se usa ./
-include_once './config/variables-conexion.php';
+include_once "./config/variables-conexion.php";
+include_once "globals.php";
 
 // ---------------- Devuelve un array asociativo con todos los registros de la tabla colores
-$selectColores = function() use ($link, $user, $password) {
+$selectColores = function() use ($link, $user, $password, $cerrarConexiones) {
     $result = null;
 
     try {
@@ -21,23 +22,18 @@ $selectColores = function() use ($link, $user, $password) {
     
         // ---------------- Obtener el resulset
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-
-        // ---------------- Destruir las conexiones abiertas
-        $stm = null;
-        $pdo = null;
     } 
     // ---------------- Control de errores
     catch (PDOException $e) {
         // ---------------- Dar un mensaje de respuesta y cerrar la conexión
         $result = "¡Error!: {$e->getMessage()}<br/>";
 
-        // ---------------- Destruir las conexiones abiertas
-        $stm = null;
-        $pdo = null;
-
         // ---------------- Termina con el script actual
         // die();
     }
+
+    // ---------------- Cerrar las conexiones a la BBDD
+    $cerrarConexiones($pdo, $stm);
 
     // ---------------- Retornar el resultado
     return $result;
