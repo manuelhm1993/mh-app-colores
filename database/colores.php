@@ -6,6 +6,8 @@ $createColores = function() use ($link, $user, $password, $cerrarConexiones) {
         ":descripcion" => $_POST["descripcion"]
     ];
 
+    $result = null;
+
     try {
         $pdo = new PDO($link, $user, $password);
 
@@ -13,7 +15,9 @@ $createColores = function() use ($link, $user, $password, $cerrarConexiones) {
 
         $stm = $pdo->prepare($sql);
 
-        $result = $stm->execute($request);
+        $stm->execute($request);
+
+        $result = "200";
     } 
     catch (PDOException $e) {
         $result = "¡Error!: {$e->getMessage()}<br/>";
@@ -21,6 +25,8 @@ $createColores = function() use ($link, $user, $password, $cerrarConexiones) {
     finally {
         $cerrarConexiones($pdo, $stm);
     }
+
+    return $result;
 };
 
 // ---------------- Devuelve un array asociativo con todos los registros de la tabla colores - READ

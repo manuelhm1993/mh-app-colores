@@ -8,6 +8,12 @@ require_once "colores.php";
 
 // ---------------- Llamar al Create y retornar a la página anterior
 if($puntos === "../") {
-    $createColores();
-    header("location:../index.php");
+    $result = $createColores();
+
+    $response = (strcmp($result, "200") === 0) ? "?response=200" : "?response=404";
+
+    header("location: ../index.php{$response}");
+    //echo $_SERVER['PHP_SELF'];
+    //echo $_SERVER['HTTP_REFERER'];
+
 }
