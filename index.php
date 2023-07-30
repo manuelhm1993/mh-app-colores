@@ -9,6 +9,7 @@
   <body>
     <div class="container mt-5">
         <div class="row">
+            <!-- READ -->
             <div class="col-md-6">
                 <?php
                 include_once "database/colores_crud.php";
@@ -28,16 +29,29 @@
                         <li><?php echo "Descripción: {$color["descripcion"]}"  ?></li>
                     </ul>
                 </div>
-                <?php } ?>
+                <?php 
+                    } // ---------------- Cierre foreach
+                } // ---------------- Cierre if
+                ?>
             </div>
-            <?php
-                }
-                else {
-            ?>
-                <!-- La clase de bootstrap se sustituye por el titulo del color -->
-                <div class="alert alert-danger text-capitalize" role="alert">
-                    <?php echo $colores ?>
-                </div>
+
+            <!-- CREATE -->
+            <div class="col-md-6">
+                <h2>Agregar elementos</h2>
+
+                <form action="database/colores_crud.php" method="post">
+                    <input type="text" class="form-control" name="titulo" placeholder="Titulo">
+                    <input type="text" class="form-control mt-3" name="descripcion" placeholder="Descripción">
+                    
+                    <button class="btn btn-primary mt-3">Agregar</button>
+                </form>
+            </div>
+
+            <?php if(!is_array($colores)) { ?>
+            <!-- La clase de bootstrap se sustituye por el titulo del color -->
+            <div class="alert alert-danger text-capitalize" role="alert">
+                <?php echo $colores ?>
+            </div>
             <?php } ?>
         </div>
     </div>
