@@ -10,10 +10,8 @@ require_once "colores.php";
 if($puntos === "../") {
     $result = $createColores();
 
-    $response = (strcmp($result, "200") === 0) ? "?response=200" : "?response=404";
+    // ---------------- Establece el código de respuesta para manejar los feedbacks
+    http_response_code((strcmp($result, "200") === 0) ? 200 : 404);
 
-    header("location: ../index.php{$response}");
-    //echo $_SERVER['PHP_SELF'];
-    //echo $_SERVER['HTTP_REFERER'];
-
+    header("location: ../index.php");
 }

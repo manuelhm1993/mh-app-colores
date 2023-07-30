@@ -10,14 +10,14 @@
   </head>
   <body>
     <div class="container mt-5">
-        <?php if(isset($_GET["response"]) && $_GET["response"] === "200") { ?>
+        <?php if(http_response_code() === 200) { ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>¡Éxito!</strong> Registro ingresado correctamente
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         <?php } ?>
 
-        <?php if(isset($_GET["response"]) && $_GET["response"] === "404") { ?>
+        <?php if(http_response_code() === 404) { ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Ha ocurrido un error!</strong> No se pudo ingresar el registro
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
