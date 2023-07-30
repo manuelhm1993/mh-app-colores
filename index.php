@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CRUD - colores</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <?php include_once "database/colores_crud.php" ?>
   </head>
   <body>
     <div class="container mt-5">
@@ -12,7 +14,6 @@
             <!-- READ -->
             <div class="col-md-6">
                 <?php
-                include_once "database/colores_crud.php";
 
                 $colores = $selectColores();
 
