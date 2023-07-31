@@ -1,18 +1,13 @@
 <?php
-// ---------------- Obtener la ruta absoluta del directorio padre con la ruta del directorio actual
-$rutaWindows = dirname(getcwd(), 1);
+// ---------------- Para retroceder una carpeta se usa ./ pero si se invoca un verbo HTTP se usa ../
+$puntos = ($_POST) ? "../" : "./";
 
-// ---------------- Reemplazar las barras invertidas de windows por los slash de unix
-$rutaUnix = str_replace("\\", "/", $rutaWindows);
-
-require_once "{$rutaUnix}/config/variables-conexion.php";
+require_once "{$puntos}config/variables-conexion.php";
 require_once "globals.php";
 require_once "colores.php";
 
-var_dump($selectColores());
-
 // ---------------- Llamar al Create y retornar a la página anterior
-if($_POST) {
+if($puntos === "../") {
     $result = $createColores();
 
     // ---------------- Establece el código de respuesta para manejar los feedbacks
