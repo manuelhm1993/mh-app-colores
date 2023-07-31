@@ -75,7 +75,8 @@ $editarColor = function() use ($link, $user, $password, $cerrarConexiones) {
 
         $stm->execute($request);
 
-        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        // ---------------- Si se va a utilizar un único registro se usa fetch
+        $result = $stm->fetch(PDO::FETCH_ASSOC);
     } 
     catch (PDOException $e) {
         $result = $e->getMessage();

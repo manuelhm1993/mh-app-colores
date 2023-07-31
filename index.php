@@ -83,9 +83,9 @@
                 <h2>Editar color</h2>
 
                 <form action="database/colores_crud.php" method="post" id="form-colores-actualizar">
-                    <input type="text" class="form-control" name="titulo" placeholder="Titulo" value="<?php echo $colorEditar[0]["titulo"] ?>" required>
-                    <input type="text" class="form-control mt-3" name="descripcion" placeholder="Descripción" value="<?php echo $colorEditar[0]["descripcion"] ?>" required>
-                    <input type="hidden" name="id" value="<?php echo $colorEditar[0]["id"] ?>">
+                    <input type="text" class="form-control" name="titulo" placeholder="Titulo" value="<?php echo $colorEditar["titulo"] ?>" required>
+                    <input type="text" class="form-control mt-3" name="descripcion" placeholder="Descripción" value="<?php echo $colorEditar["descripcion"] ?>" required>
+                    <input type="hidden" name="id" value="<?php echo $colorEditar["id"] ?>">
                     <input type="hidden" name="actualizar">
                     <input type="hidden" name="accion">
                     
