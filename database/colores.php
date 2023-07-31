@@ -1,5 +1,5 @@
 <?php
-// ---------------- Recibe un request para ingresar un nuetro registro en la tabla colores - CREATE
+// ---------------- Crea un nuevo registro en la tabla colores - CREATE
 $createColores = function() use ($link, $user, $password, $cerrarConexiones) {
     $request = [
         ":titulo"      => $_POST["titulo"],
@@ -62,7 +62,33 @@ $selectColores = function() use ($link, $user, $password, $cerrarConexiones) {
     return $result;
 };
 
-$eliminarTodo = function() use ($link, $user, $password, $cerrarConexiones) {
+// ---------------- Recibe el id del registro a eliminar - DELETE
+$eliminarColor = function() use ($link, $user, $password, $cerrarConexiones) {
+    $request = [$_POST["id"]];
+
+    try {
+        $pdo = new PDO($link, $user, $password);
+
+        $sql = "DELETE FROM colores WHERE id = ?";
+
+        $stm = $pdo->prepare($sql);
+
+        $stm->execute($request);
+
+        $result = $stm->rowCount();
+    } 
+    catch (PDOException $e) {
+        $result = $e->getMessage();
+    }
+    finally {
+        $cerrarConexiones($pdo, $stm);
+    }
+
+    return $result;
+};
+
+// ---------------- Elimina todo los registros de la tabla colores - DELETE
+$eliminarColores = function() use ($link, $user, $password, $cerrarConexiones) {
     try {
         $pdo = new PDO($link, $user, $password);
 

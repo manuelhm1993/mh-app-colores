@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/vendor/sweetalert2-11.7.20/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="assets/vendor/fontawesome-free-6.4.0-web/css/fontawesome-free-6.4.0-web.all.min.css">
 
     <?php 
     include_once "database/colores_crud.php";
@@ -82,6 +83,7 @@
 
     <script src="assets/vendor/bootstrap-5.3.1-dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/sweetalert2-11.7.20/dist/sweetalert2.all.min.js"></script>
+    <script src="assets/vendor/fontawesome-free-6.4.0-web/js/fontawesome-free-6.4.0-web.all.min.js"></script>
     <script src="assets/js/app.js"></script>
   </body>
 </html>

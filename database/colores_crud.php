@@ -17,7 +17,7 @@ if($puntos === "../" && !isset($_POST["eliminar-todo"])) {
 }
 
 if(isset($_POST["eliminar-todo"])) {
-    $eliminarTodo();
-    
+    $eliminarColores();
+
     header("location: ../index.php");
 }
