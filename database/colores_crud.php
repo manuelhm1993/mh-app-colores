@@ -16,6 +16,14 @@ if($puntos === "../" && !isset($_POST["eliminar-todo"])) {
     header("location: ../index.php");
 }
 
+// ---------------- Elimina un registro específico
+if(isset($_POST["eliminar"])) {
+    $eliminarColor();
+
+    header("location: ../index.php");
+}
+
+// ---------------- Elimina todos los registros
 if(isset($_POST["eliminar-todo"])) {
     $eliminarColores();
 

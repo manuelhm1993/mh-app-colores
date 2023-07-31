@@ -54,8 +54,26 @@
                 ?>
                 
                 <!-- La clase de bootstrap se sustituye por el titulo del color -->
-                <div class="alert alert-<?php echo $color["titulo"]  ?> text-capitalize" role="alert">
-                    <?php echo "{$color["titulo"]} - {$color["descripcion"]}"  ?>
+                <div class="alert alert-<?php echo $color["titulo"]  ?> text-capitalize d-flex justify-content-between" role="alert">
+                    <p><?php echo "{$color["titulo"]} - {$color["descripcion"]}"  ?></p>
+
+                    <div class="d-flex">
+                        <form action="database/colores_crud.php" method="post">
+                            <input type="hidden" name="id" value="<?php echo $color["id"] ?>">
+                            <input type="hidden" name="editar">
+                            <button class="btn" type="submit">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                        </form>
+
+                        <form action="database/colores_crud.php" method="post" class="form-eliminar" id="form-eliminar-<?php echo $color["id"] ?>">
+                            <input type="hidden" name="id" value="<?php echo $color["id"] ?>">
+                            <input type="hidden" name="eliminar">
+                            <button class="btn" type="button" data-id-color="<?php echo $color["id"] ?>">
+                                <i class="fa-solid fa-trash i"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
                 <?php 
                     } // ---------------- Cierre foreach
