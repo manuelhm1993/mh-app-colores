@@ -20,7 +20,7 @@ $createColores = function() use ($link, $user, $password, $cerrarConexiones) {
         $result = "200";
     } 
     catch (PDOException $e) {
-        $result = "¡Error!: {$e->getMessage()}<br/>";
+        $result = $e->getMessage();
     }
     finally {
         $cerrarConexiones($pdo, $stm);
@@ -52,7 +52,7 @@ $selectColores = function() use ($link, $user, $password, $cerrarConexiones) {
     // ---------------- Control de errores
     catch (PDOException $e) {
         // ---------------- Dar un mensaje de respuesta y cerrar la conexión
-        $result = "¡Error!: {$e->getMessage()}<br/>";
+        $result = $e->getMessage();
 
         // ---------------- Termina con el script actual
         // die();

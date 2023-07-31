@@ -6,31 +6,45 @@
     <title>CRUD - colores</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
-    <?php include_once "database/colores_crud.php" ?>
+    <?php 
+    include_once "database/colores_crud.php";
+
+    $colores = $selectColores();
+    ?>
   </head>
   <body>
     <div class="container mt-5">
-        <?php if(http_response_code() === 200) { ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>¡Éxito!</strong> Registro ingresado correctamente
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php } ?>
+        <div class="row">
+            <div class="col">
+                <!-- CREATE -->
+                <?php if(http_response_code() === 200) { ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>¡Éxito!</strong> Registro ingresado correctamente
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php } ?>
 
-        <?php if(http_response_code() === 404) { ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Ha ocurrido un error!</strong> No se pudo ingresar el registro
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <?php if(http_response_code() === 404) { ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>¡Ha ocurrido un error!</strong> No se pudo ingresar el registro
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php } ?>
+                
+                <!-- READ -->
+                <?php if(!is_array($colores)) { ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>¡Error!</strong> <?php echo $colores ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php } ?>
+            </div>
         </div>
-        <?php } ?>
 
         <div class="row">
             <!-- READ -->
             <div class="col-md-6">
                 <?php
-
-                $colores = $selectColores();
-
                 if(is_array($colores)) {
                     // ---------------- Manipular el resulset
                     foreach ($colores as $color) {
@@ -61,13 +75,6 @@
                     <button class="btn btn-primary mt-3">Agregar</button>
                 </form>
             </div>
-
-            <?php if(!is_array($colores)) { ?>
-            <!-- La clase de bootstrap se sustituye por el titulo del color -->
-            <div class="alert alert-danger text-capitalize" role="alert">
-                <?php echo $colores ?>
-            </div>
-            <?php } ?>
         </div>
     </div>
 
