@@ -23,14 +23,6 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col">
-                <!-- CREATE -->
-                <?php if(http_response_code() === 200) { ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>¡Éxito!</strong> Acción completada satisfactoriamente
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <?php } ?>
-
                 <?php if(http_response_code() === 404) { ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <strong>¡Ha ocurrido un error!</strong> No se pudo completar la acción
@@ -94,6 +86,7 @@
                     <input type="text" class="form-control" name="titulo" placeholder="Titulo" value="<?php echo $colorEditar[0]["titulo"] ?>" required>
                     <input type="text" class="form-control mt-3" name="descripcion" placeholder="Descripción" value="<?php echo $colorEditar[0]["descripcion"] ?>" required>
                     <input type="hidden" name="id" value="<?php echo $colorEditar[0]["id"] ?>">
+                    <input type="hidden" name="actualizar">
                     
                     <button class="btn btn-primary mt-3" type="submit">Actualizar</button>
                     <?php if(count($colores) > 0) { ?>

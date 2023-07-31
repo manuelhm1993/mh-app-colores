@@ -87,6 +87,31 @@ $editarColor = function() use ($link, $user, $password, $cerrarConexiones) {
     return $result;
 };
 
+// ---------------- Actualiza el item selecconado - UPDATE
+$actualizarColor = function() use ($link, $user, $password, $cerrarConexiones) {
+    $request = [$_POST["titulo"], $_POST["descripcion"], $_POST["id"]];
+
+    try {
+        $pdo = new PDO($link, $user, $password);
+
+        $sql = "UPDATE colores SET titulo = ?, descripcion = ? WHERE id = ?";
+
+        $stm = $pdo->prepare($sql);
+
+        $stm->execute($request);
+
+        $result = $stm->rowCount();
+    } 
+    catch (PDOException $e) {
+        $result = $e->getMessage();
+    }
+    finally {
+        $cerrarConexiones($pdo, $stm);
+    }
+
+    return $result;
+};
+
 // ---------------- Recibe el id del registro a eliminar - DELETE
 $eliminarColor = function() use ($link, $user, $password, $cerrarConexiones) {
     $request = [$_POST["id"]];
