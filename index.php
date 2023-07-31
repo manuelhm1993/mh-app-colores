@@ -82,15 +82,16 @@
                 <?php if(isset($colorEditar)) {?>
                 <h2>Editar color</h2>
 
-                <form action="database/colores_crud.php" method="post">
+                <form action="database/colores_crud.php" method="post" id="form-colores-actualizar">
                     <input type="text" class="form-control" name="titulo" placeholder="Titulo" value="<?php echo $colorEditar[0]["titulo"] ?>" required>
                     <input type="text" class="form-control mt-3" name="descripcion" placeholder="Descripción" value="<?php echo $colorEditar[0]["descripcion"] ?>" required>
                     <input type="hidden" name="id" value="<?php echo $colorEditar[0]["id"] ?>">
                     <input type="hidden" name="actualizar">
+                    <input type="hidden" name="accion">
                     
                     <button class="btn btn-primary mt-3" type="submit">Actualizar</button>
                     <?php if(count($colores) > 0) { ?>
-                    <button class="btn btn-danger mt-3" type="submit">Vaciar listado</button>
+                    <button class="btn btn-danger mt-3 actualizar" type="submit">Vaciar listado</button>
                     <?php } ?>
                 </form>
                 <?php } else {?>
@@ -100,6 +101,7 @@
                     <input type="text" class="form-control" name="titulo" placeholder="Titulo" required>
                     <input type="text" class="form-control mt-3" name="descripcion" placeholder="Descripción" required>
                     <input type="hidden" name="accion">
+                    <input type="hidden" name="crear">
                     
                     <button class="btn btn-primary mt-3" type="submit">Agregar</button>
                     <?php if(count($colores) > 0) { ?>

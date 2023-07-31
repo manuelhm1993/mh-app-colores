@@ -1,6 +1,4 @@
-const formColores = document.querySelector('#form-colores');
-
-const feedbackEliminar = (alertObject, formEliminarColor = null) => {
+const feedbackEliminar = (alertObject, formColores = null, formEliminarColor = null) => {
     Swal.fire({
         title: alertObject.title,
         text: alertObject.text,
@@ -12,7 +10,7 @@ const feedbackEliminar = (alertObject, formEliminarColor = null) => {
     }).then((result) => {
         if(result.isConfirmed) {
             if(alertObject.id === "eliminar-todo") {
-                alertObject.eliminarTodo();
+                alertObject.eliminarTodo(formColores);
             }
             if(alertObject.id === "eliminar") {
                 alertObject.eliminarColor(formEliminarColor);
@@ -34,7 +32,7 @@ document.addEventListener('click', (e) => {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Aceptar',
         idColor: '',
-        eliminarTodo() {
+        eliminarTodo(formColores) {
             formColores["accion"].setAttribute("name", "eliminar-todo");
             formColores.submit();
         },
@@ -43,11 +41,23 @@ document.addEventListener('click', (e) => {
         }
     };
 
-    if(fuenteEvento.matches('#form-colores .btn.btn-danger')) {
+    if(fuenteEvento.matches('#form-colores .btn.btn-danger')
+    || fuenteEvento.matches('#form-colores-actualizar .btn.btn-danger')) {
         e.preventDefault();
+        
         alertObject.id = "eliminar-todo";
         alertObject.text = "Está a punto de eliminar todos los registros de la lista ¿desea continuar?";
-        feedbackEliminar(alertObject);
+
+        let formColores = null;
+
+        if(fuenteEvento.matches(".actualizar")) {
+            formColores = document.querySelector("#form-colores-actualizar");
+        }
+        else {
+            formColores = document.querySelector("#form-colores");
+        }
+
+        feedbackEliminar(alertObject, formColores, null);
     }
 
     if(fuenteEvento.matches('.form-eliminar .btn')
@@ -60,6 +70,6 @@ document.addEventListener('click', (e) => {
 
         alertObject.text = `Está a punto de eliminar el color ${ alertObject.idColor } ¿desea continuar?`;
 
-        feedbackEliminar(alertObject, document.querySelector(`#form-eliminar-${alertObject.idColor}`));
+        feedbackEliminar(alertObject, null, document.querySelector(`#form-eliminar-${alertObject.idColor}`));
     }
 });
