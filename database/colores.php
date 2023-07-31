@@ -6,8 +6,6 @@ $createColores = function() use ($link, $user, $password, $cerrarConexiones) {
         ":descripcion" => $_POST["descripcion"]
     ];
 
-    $result = null;
-
     try {
         $pdo = new PDO($link, $user, $password);
 
@@ -31,8 +29,6 @@ $createColores = function() use ($link, $user, $password, $cerrarConexiones) {
 
 // ---------------- Devuelve un array asociativo con todos los registros de la tabla colores - READ
 $selectColores = function() use ($link, $user, $password, $cerrarConexiones) {
-    $result = null;
-
     try {
         // ---------------- Crear una instancia de PDO y conectar con la BBDD
         $pdo = new PDO($link, $user, $password);
@@ -63,5 +59,27 @@ $selectColores = function() use ($link, $user, $password, $cerrarConexiones) {
     }
 
     // ---------------- Retornar el resultado
+    return $result;
+};
+
+$eliminarTodo = function() use ($link, $user, $password, $cerrarConexiones) {
+    try {
+        $pdo = new PDO($link, $user, $password);
+
+        $sql = "DELETE FROM colores";
+
+        $stm = $pdo->prepare($sql);
+
+        $stm->execute();
+
+        $result = $stm->rowCount();
+    } 
+    catch (PDOException $e) {
+        $result = $e->getMessage();
+    }
+    finally {
+        $cerrarConexiones($pdo, $stm);
+    }
+
     return $result;
 };

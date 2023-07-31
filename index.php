@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CRUD - colores</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/sweetalert2-11.7.20/dist/sweetalert2.min.css">
 
     <?php 
     include_once "database/colores_crud.php";
@@ -19,18 +21,18 @@
                 <!-- CREATE -->
                 <?php if(http_response_code() === 200) { ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>¡Éxito!</strong> Registro ingresado correctamente
+                    <strong>¡Éxito!</strong> Acción completada satisfactoriamente
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 <?php } ?>
 
                 <?php if(http_response_code() === 404) { ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>¡Ha ocurrido un error!</strong> No se pudo ingresar el registro
+                    <strong>¡Ha ocurrido un error!</strong> No se pudo completar la acción
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 <?php } ?>
-                
+
                 <!-- READ -->
                 <?php if(!is_array($colores)) { ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -52,11 +54,7 @@
                 
                 <!-- La clase de bootstrap se sustituye por el titulo del color -->
                 <div class="alert alert-<?php echo $color["titulo"]  ?> text-capitalize" role="alert">
-                    <ul>
-                        <li><?php echo "ID: {$color["id"]}"  ?></li>
-                        <li><?php echo "Nombre: {$color["titulo"]}"  ?></li>
-                        <li><?php echo "Descripción: {$color["descripcion"]}"  ?></li>
-                    </ul>
+                    <?php echo "{$color["titulo"]} - {$color["descripcion"]}"  ?>
                 </div>
                 <?php 
                     } // ---------------- Cierre foreach
@@ -68,16 +66,22 @@
             <div class="col-md-6">
                 <h2>Agregar elementos</h2>
 
-                <form action="database/colores_crud.php" method="post">
-                    <input type="text" class="form-control" name="titulo" placeholder="Titulo">
-                    <input type="text" class="form-control mt-3" name="descripcion" placeholder="Descripción">
+                <form action="database/colores_crud.php" method="post" id="form-colores">
+                    <input type="text" class="form-control" name="titulo" placeholder="Titulo" required>
+                    <input type="text" class="form-control mt-3" name="descripcion" placeholder="Descripción" required>
+                    <input type="hidden" name="accion">
                     
-                    <button class="btn btn-primary mt-3">Agregar</button>
+                    <button class="btn btn-primary mt-3" type="submit">Agregar</button>
+                    <?php if(count($colores) > 0) { ?>
+                    <button class="btn btn-danger mt-3" type="submit">Vaciar listado</button>
+                    <?php } ?>
                 </form>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="assets/vendor/bootstrap-5.3.1-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/sweetalert2-11.7.20/dist/sweetalert2.all.min.js"></script>
+    <script src="assets/js/app.js"></script>
   </body>
 </html>

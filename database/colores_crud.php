@@ -7,11 +7,17 @@ require_once "globals.php";
 require_once "colores.php";
 
 // ---------------- Llamar al Create y retornar a la página anterior
-if($puntos === "../") {
+if($puntos === "../" && !isset($_POST["eliminar-todo"])) {
     $result = $createColores();
 
     // ---------------- Establece el código de respuesta para manejar los feedbacks
     http_response_code((strcmp($result, "200") === 0) ? 200 : 404);
 
+    header("location: ../index.php");
+}
+
+if(isset($_POST["eliminar-todo"])) {
+    $eliminarTodo();
+    
     header("location: ../index.php");
 }
