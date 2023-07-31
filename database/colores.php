@@ -62,6 +62,31 @@ $selectColores = function() use ($link, $user, $password, $cerrarConexiones) {
     return $result;
 };
 
+// ---------------- Devuelve un array asociativo con los valores correspondientes al registro a editar - UPDATE
+$editarColor = function() use ($link, $user, $password, $cerrarConexiones) {
+    $request = [$_POST["id"]];
+
+    try {
+        $pdo = new PDO($link, $user, $password);
+
+        $sql = "SELECT * FROM colores WHERE id = ?";
+
+        $stm = $pdo->prepare($sql);
+
+        $stm->execute($request);
+
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+    } 
+    catch (PDOException $e) {
+        $result = $e->getMessage();
+    }
+    finally {
+        $cerrarConexiones($pdo, $stm);
+    }
+
+    return $result;
+};
+
 // ---------------- Recibe el id del registro a eliminar - DELETE
 $eliminarColor = function() use ($link, $user, $password, $cerrarConexiones) {
     $request = [$_POST["id"]];

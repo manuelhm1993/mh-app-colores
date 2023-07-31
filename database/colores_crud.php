@@ -1,6 +1,6 @@
 <?php
 // ---------------- Para retroceder una carpeta se usa ./ pero si se invoca un verbo HTTP se usa ../
-$puntos = ($_POST) ? "../" : "./";
+$puntos = ($_POST && !isset($_POST["editar"])) ? "../" : "./";
 
 require_once "{$puntos}config/variables-conexion.php";
 require_once "globals.php";

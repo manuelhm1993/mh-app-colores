@@ -12,6 +12,10 @@
     <?php 
     include_once "database/colores_crud.php";
 
+    if(isset($_POST["editar"])) {
+        $colorEditar = $editarColor();
+    }
+
     $colores = $selectColores();
     ?>
   </head>
@@ -58,7 +62,7 @@
                     <p><?php echo "{$color["titulo"]} - {$color["descripcion"]}"  ?></p>
 
                     <div class="d-flex">
-                        <form action="database/colores_crud.php" method="post">
+                        <form action="#" method="post">
                             <input type="hidden" name="id" value="<?php echo $color["id"] ?>">
                             <input type="hidden" name="editar">
                             <button class="btn" type="submit">
@@ -69,7 +73,7 @@
                         <form action="database/colores_crud.php" method="post" class="form-eliminar" id="form-eliminar-<?php echo $color["id"] ?>">
                             <input type="hidden" name="id" value="<?php echo $color["id"] ?>">
                             <input type="hidden" name="eliminar">
-                            <button class="btn" type="button" data-id-color="<?php echo $color["id"] ?>">
+                            <button class="btn" type="submit" data-id-color="<?php echo $color["id"] ?>">
                                 <i class="fa-solid fa-trash i"></i>
                             </button>
                         </form>
@@ -83,6 +87,20 @@
 
             <!-- CREATE -->
             <div class="col-md-6">
+                <?php if(isset($colorEditar)) {?>
+                <h2>Editar color</h2>
+
+                <form action="database/colores_crud.php" method="post">
+                    <input type="text" class="form-control" name="titulo" placeholder="Titulo" value="<?php echo $colorEditar[0]["titulo"] ?>" required>
+                    <input type="text" class="form-control mt-3" name="descripcion" placeholder="Descripción" value="<?php echo $colorEditar[0]["descripcion"] ?>" required>
+                    <input type="hidden" name="id" value="<?php echo $colorEditar[0]["id"] ?>">
+                    
+                    <button class="btn btn-primary mt-3" type="submit">Actualizar</button>
+                    <?php if(count($colores) > 0) { ?>
+                    <button class="btn btn-danger mt-3" type="submit">Vaciar listado</button>
+                    <?php } ?>
+                </form>
+                <?php } else {?>
                 <h2>Agregar elementos</h2>
 
                 <form action="database/colores_crud.php" method="post" id="form-colores">
@@ -95,6 +113,7 @@
                     <button class="btn btn-danger mt-3" type="submit">Vaciar listado</button>
                     <?php } ?>
                 </form>
+                <?php } ?>
             </div>
         </div>
     </div>
