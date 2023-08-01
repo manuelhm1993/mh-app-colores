@@ -7,7 +7,6 @@ require_once "globals.php";
 require_once "colores.php";
 
 // ---------------- Llamar al Create y retornar a la página anterior
-// if($puntos === "../" && !isset($_POST["eliminar-todo"]) && !isset($_POST["actualizar"])) {
 if(isset($_POST["crear"])) {
     $result = $createColores();
 
@@ -23,7 +22,6 @@ if(isset($_POST["actualizar"])) {
 
     header("location: ../index.php");
 }
-
 
 // ---------------- Elimina un registro específico
 if(isset($_POST["eliminar"])) {
