@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION["admin"])) {
-    header('Location: registro.php');
+    header('Location: form-sesion/registro.php');
 }
 ?>
 
@@ -28,6 +28,13 @@ if(!isset($_SESSION["admin"])) {
     ?>
   </head>
   <body>
+    <nav class="navbar bg-body-tertiary">   
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1"><?php echo $_SESSION["admin"] ?></span>
+            <a class="navbar-brand btn" href="form-sesion/cerrar_sesion.php">Cerrar sesión</a>
+        </div>
+    </nav>
+
     <div class="container mt-5">
         <div class="row">
             <div class="col">
