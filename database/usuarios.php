@@ -4,7 +4,7 @@ $crearUsuario = function($request) use ($link, $user, $password, $cerrarConexion
     try {
         $pdo = new PDO($link, $user, $password);
 
-        $sql = "INSERT INTO usuarios (nombre, constrasena) VALUES (:usuario, :contrasena)";
+        $sql = "INSERT INTO usuarios (nombre, contrasena) VALUES (:usuario, :contrasena)";
 
         $stm = $pdo->prepare($sql);
 
@@ -27,12 +27,11 @@ $validarNombreUsuario = function($nombre) use ($link, $user, $password, $cerrarC
     try {
         $pdo = new PDO($link, $user, $password);
 
-        $sql = "SELECT * FROM usuarios WHERE nombre LIKE ?";
+        $sql = "SELECT * FROM usuarios WHERE nombre = ?";
 
         $stm = $pdo->prepare($sql);
 
-        // ---------------- Forma de agregar LIKE a una consulta preparada
-        $stm->execute(["%$nombre%"]);
+        $stm->execute([$nombre]);
 
         $result = $stm->fetch(PDO::FETCH_ASSOC);
     } 

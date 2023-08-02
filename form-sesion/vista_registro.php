@@ -9,7 +9,7 @@ $vista_registro = [
         <input type="password" name="contrasena2" placeholder="Confirme su contraseña">
 
         <button type="submit">Crear cuenta</button>
-    <form>
+    </form>
     ',
     "titulo" => "Registro"
 ];
