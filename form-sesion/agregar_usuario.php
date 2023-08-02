@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once "../config/variables-conexion.php";
 require_once "../database/globals.php";
 require_once "../database/usuarios.php";
@@ -19,7 +21,10 @@ if($_POST) {
         // --------- Comprobar que las contraseñas coinciden
         if(password_verify($contrasena_verificacion, $request["contrasena"])) {
             $crearUsuario($request);
-            header('Location: ../index.php');
+            
+            $_SESSION["admin"] = $request["usuario"];
+
+            header("Location: middleware.php");
         }
         else {
             header('Location: registro.php');

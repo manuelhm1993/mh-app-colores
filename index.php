@@ -1,4 +1,10 @@
-<?php if(!$_POST) header('Location: form-sesion/registro.php') ?>
+<?php 
+session_start();
+
+if(!isset($_SESSION["admin"])) {
+    header('Location: registro.php');
+}
+?>
 
 <!doctype html>
 <html lang="en">
