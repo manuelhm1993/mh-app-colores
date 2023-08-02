@@ -6,6 +6,8 @@
     <title>Registro</title>
 </head>
 <body>
+    <h1>Registro de usuario</h1>
+
     <form action="agregar_usuario.php" method="post">
         <input type="text" name="nombre_usuario" placeholder="Ingrese su usuario">
         <input type="text" name="contrasena" placeholder="Ingrese su contraseña">

@@ -1,3 +1,5 @@
+<?php if(!$_POST) header('Location: form-sesion/registro.php') ?>
+
 <!doctype html>
 <html lang="en">
   <head>
