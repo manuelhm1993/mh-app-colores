@@ -1,11 +1,11 @@
 <?php
 // ---------------- Variables propias de PDO
 $driver   = "mysql";
-$link     = "mysql:host=localhost;dbname=colores_crud";
+$link     = "mysql:host=localhost;dbname=cursos_php_colores_crud";
 
 // ---------------- Variables compartidas por PDO y MySQL
 $host     = "localhost";
-$db       = "colores_crud";
+$db       = "cursos_php_colores_crud";
 $user     = "root";
 $password = "";
 
